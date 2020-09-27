@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.74.3" />
+
+
+<title>A study of political parties&#39; election promises and voters&#39; satisfication levels - A Hugo website</title>
+<meta property="og:title" content="A study of political parties&#39; election promises and voters&#39; satisfication levels - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">A study of political parties&#39; election promises and voters&#39; satisfication levels</h1>
+
+    
+    <span class="article-date">2020-09-25</span>
+    
+
+    <div class="article-content">
+      
+
+
+<div id="abstract" class="section level2">
+<h2>Abstract</h2>
+<p>This study investigated the importance of political parties to keep their election promises based on the 2019 Canadian Election Study survey data. It is found political parties which keep their election promises would have their voters with higher higher satisfication levels. This study recommend the political parties which want to win their elections should make their election promises carefully and sincerely.</p>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Elin Naurin already investigated the topic “political parties keep their election promises” in 2011[1], the study pointed out that it is important for political parties to keep their election promises. Under this background, this study is aimed to investigate the topic by finding some evidences from real election survey data to show the importance of political parties to keep their election promises.</p>
+</div>
+<div id="data-discussion" class="section level2">
+<h2>Data discussion</h2>
+<p>The data used for this study comes from the 2019 Canadian Election Study data[2], the source data could be found in the website (<a href="http://www.ces-eec.ca/" class="uri">http://www.ces-eec.ca/</a>) and could be downloaded using ‘cesR’ pacakge in R easily (<a href="https://hodgettsp.github.io/cesR/" class="uri">https://hodgettsp.github.io/cesR/</a>). The original whole online survey includes 37822 observations with 620 variables. But for this study, not all of the variables are used, only two of variables are interested in this study which are “Do political parties keep their election promises?” and “Are you satisfied at all with the way democracy works in Canada?”
+. Also, missing values are dropped in these two variables for the study.</p>
+</div>
+<div id="graph" class="section level2">
+<h2>Graph</h2>
+<p>The following graph shows the proportions of 6 different options of question “Do political parties keep their election promises” in the 5 levels of question “Are you satisfied at all with the way democracy works in Canada?”.</p>
+<pre class="r"><code>library(ggplot2)
+library(dplyr)
+library(scales)
+#load ces data
+load(&quot;ces2019_web.rdata&quot;)
+#2D frequency table
+dt &lt;- ces2019_web %&gt;% group_by(cps19_demsat,pes19_keepromises) %&gt;% summarise(count = n())
+#dropping missing values
+dt &lt;- na.omit(dt)
+#compute percentages for options of keep election promises in different satisfication options
+dt2 &lt;- dt %&gt;% group_by(cps19_demsat) %&gt;% summarise(sum =  sum(count))
+dt3 &lt;- dt %&gt;% left_join(dt2) %&gt;% mutate(percentage = count / sum * 100)
+colnames(dt3)[2] &lt;- &quot;keepromises&quot;
+#show the stacked bar plot
+ggplot(dt3, aes(cps19_demsat,percentage,fill= keepromises))+geom_bar(stat=&quot;identity&quot;) +
+  scale_y_continuous(labels = scales::percent) + xlab(&quot;&quot;)</code></pre>
+<p><img src="/post/2020-09-25-a-study-of-political-parties-election-promises-and-voters-satisfication-levels_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="graph-discussion" class="section level2">
+<h2>Graph discussion</h2>
+<p>The stacked bar plot shows that ignoring the voters who are prefer not to answer and don’t know how to answer, the proportions occupied by the options “most of the time” and “some of the time” for the question of “Do political parties keep their election promises?” are clearly decreasing with the decreasing of the satisfication levels, i.e. from “very satisfied” to “Not at all satisfied”. This means that in the 2019 Canadian Election, it is really important of whether the political parties could keep their election promises. The higher proportion of times they keep their election promises would always associated with higher satisfication level of voters. This finding means that keep election promises for political parties is very important to have a higher chance to win the election as votes would be always obtained much easier from voters with high satisfication level than those with low satisfication level. This finding remind the political parties to make their election promises carefully and sincerely.</p>
+</div>
+<div id="weaknesses-and-next-steps" class="section level2">
+<h2>Weaknesses and next steps</h2>
+<p>The weakness of this study mainly located at the point that this study does not describe the basic characteristics of voters, for examples, voters with different education levels might show different outcomes of satisfication levels because the standards for the term “keep election promises” might be different for them, high level educated people might be more strictly. In future studies, the basic characteristics of voters such as education level, gender, income level would be considered in investigating the relationship between satisfication level and options of keep election promises of political parties.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p>[1]. Naurin E. (2011) Do Parties Fulfil Their Election Promises?. In: Election Promises, Party Behaviour and Voter Perceptions. Public Sector Organizations. Palgrave Macmillan, London. <a href="https://doi.org/10.1057/9780230319301_4" class="uri">https://doi.org/10.1057/9780230319301_4</a>.</p>
+<p>[2]. Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, ???2019 Canadian Election Study - Online Survey???, <a href="https://doi.org/10.7910/DVN/DUS88V" class="uri">https://doi.org/10.7910/DVN/DUS88V</a>, Harvard Dataverse, V1.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

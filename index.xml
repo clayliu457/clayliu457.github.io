@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>A Hugo website</title>
+    <link>/</link>
+    <description>Recent content on A Hugo website</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A study of political parties&#39; election promises and voters&#39; satisfication levels</title>
+      <link>/2020/09/25/a-study-of-political-parties-election-promises-and-voters-satisfication-levels/</link>
+      <pubDate>Fri, 25 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/09/25/a-study-of-political-parties-election-promises-and-voters-satisfication-levels/</guid>
+      <description>AbstractThis study investigated the importance of political parties to keep their election promises based on the 2019 Canadian Election Study survey data. It is found political parties which keep their election promises would have their voters with higher higher satisfication levels. This study recommend the political parties which want to win their elections should make their election promises carefully and sincerely.
+IntroductionElin Naurin already investigated the topic “political parties keep their election promises” in 2011[1], the study pointed out that it is important for political parties to keep their election promises.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
+    </item>
+    
+  </channel>
+</rss>
