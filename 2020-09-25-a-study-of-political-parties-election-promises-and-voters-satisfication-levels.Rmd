@@ -32,7 +32,7 @@ The data used for this study comes from the 2019 Canadian Election Study data[2]
 
 ## Graph
 
-The following graph shows the proportions of 6 different options of question "Do political parties keep their election promises" in the 5 levels of question "Are you satisfied at all with the way democracy works in Canada?".
+The following graph shows the proportions of 6 different options of question "Do political parties keep their election promises" in the 5 levels of question "Are you satisfied at all with the way democracy works in Canada?". The original source of the data and codes can be seen in the github  https://github.com/clayliu457/clayliu457.github.io. 
 
 ```{r}
 library(ggplot2)
